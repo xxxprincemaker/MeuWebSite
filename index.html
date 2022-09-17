@@ -246,18 +246,16 @@
             <div class="hover-items">
               <h3>Trabalho 1 <br />Meu Primeiro Web Site</h3>
               <div class="icons">
-                <a
-                  href="https://github.com/xxxprincemaker/MeuWebSite"
-                  target="_blank"
-                  class="icon"
-                >
-                  <i class="fab fa-github"></i>
-                </a>
-                <a
-                  href="#home"
-                  class="icon"
-                  target="_blank"
-                >
+                  <button id="myBtn" class="icon">
+                    <a
+                      href="https://github.com/xxxprincemaker/MeuWebSite"
+                      target="_blank"
+                      class="icon"
+                    >
+                      <i class="fab fa-github"></i>
+                    </a>
+                  </button>
+                <a href="myfirstwebsite.html" class="icon">
                   <i class="fas fa-share"></i>
                 </a>
               </div>
@@ -447,19 +445,14 @@
         <i class="fas fa-envelope-open"></i>
       </div>
     </div>
-    <div class="theme-btn">
-      <i class="fas fa-adjust"></i>
+    <div class="theme-btn" data-id="home">
+      <div class="tooltip">
+        <span class="tooltiptext">Trocar Tema</span>
+        <i class="fas fa-adjust"></i>
+      </div>
     </div>
     <script src="app.js"></script>
     <script type="text/javascript">
-      function goto(elementid) {
-        var element = document.getElementById(elementid);
-        element.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-          inline: "nearest",
-        });
-      }
     </script>
   </body>
 </html>
