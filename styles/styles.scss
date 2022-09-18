@@ -673,7 +673,7 @@ section {
 .centered {
     width: 963px;
     height: 516px;
-    top: 50%;
+    top: 55%;
     left: 50%;
     position: absolute;
     margin-top: -255px;
@@ -687,7 +687,7 @@ section {
  .tooltip {
     position: relative;
     display: inline-block;
-    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+    border-bottom: 1px; 
   }
 
   /* Tooltip text */
@@ -774,23 +774,5 @@ section {
     text-decoration: none;
     cursor: pointer;
   }
-  .flex-container {
-    display: flex;
-    flex-wrap: wrap;
-  }
 
-  .flex-item-left {
-    flex: 50%;
-  }
-
-  .flex-item-right {
-    flex: 50%;
-  }
-
-  /* Responsive layout - makes a one column layout instead of a two-column layout */
-  @media (max-width: 800px) {
-    .flex-item-right, .flex-item-left {
-      flex: 100%;
-    }
-  }
 @import './media';
