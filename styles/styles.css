@@ -712,8 +712,8 @@ section {
 .centered {
   width: 963px;
   height: 516px;
-  top: 55%;
-  left: 50%;
+  top: 44%;
+  left: 44%;
   position: absolute;
   margin-top: -255px;
   margin-left: -483px;
@@ -769,8 +769,8 @@ section {
 }
 
 div.scroll {
-  width: 963px;
-  height: 516px;
+  width: 1163px;
+  height: 668px;
   overflow-x: hidden;
   overflow-y: auto;
   padding: 20px;
