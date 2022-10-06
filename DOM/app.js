@@ -125,19 +125,3 @@ window.onkeydown = function (event){
        }
     }
 }
-
-knowHow("Purple Rain", "This is a button, when is pressed creates a purple rain on the page.");
-
-//create button
-let button = document.createElement('button');
-button.className = "pill";
-button.textContent = "Purple Rain";
-button.id = "purpleRain-button";
-button.style.marginTop = "2em";
-divBody.appendChild(button);
-
-let something = true;
-
-button.onclick = function (){
-    console.log(something = !something);
-}
