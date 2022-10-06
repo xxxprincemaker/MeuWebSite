@@ -51,6 +51,8 @@ function addImages(idImage, path){
     image.style.borderRadius="45%";
     image.style.margin="1em";
     image.style.alignContent="center";
+    image.style.borderColor="#8A2BE2"
+    image.style.borderStyle="dotted"
 
     boxOfImages.appendChild(image);
     divImages.appendChild(boxOfImages);
@@ -107,6 +109,8 @@ function addNewImage(){
     newImage.style.borderRadius="45%";
     newImage.style.margin="1em";
     newImage.style.alignContent="center";
+    newImage.style.borderColor="#8A2BE2"
+    newImage.style.borderStyle="dotted"
 
     divImages.appendChild(newImage);
 
