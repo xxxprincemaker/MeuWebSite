@@ -63,19 +63,19 @@ function addImages(idImage, path){
 
 //Images
 let setOfImages = [
-    {id: "image1", path: "/DOM/images/img1.jpg", image: null},
-    {id: "image2", path: "/DOM/images/img2.jpg", image: null},
-    {id: "image3", path: "/DOM/images/img3.jpg", image: null},
-    {id: "image4", path: "/DOM/images/img4.jpg", image: null},
-    {id: "image5", path: "/DOM/images/img5.jpg", image: null},
+    {id: "image1", path: "DOM/images/img1.jpg", image: null},
+    {id: "image2", path: "DOM/images/img2.jpg", image: null},
+    {id: "image3", path: "DOM/images/img3.jpg", image: null},
+    {id: "image4", path: "DOM/images/img4.jpg", image: null},
+    {id: "image5", path: "DOM/images/img5.jpg", image: null},
 ]
 
 let setOfINewImages = [
-    {id: "newimage1", path: "/DOM/images/newImages-1.jpg", image: null},
-    {id: "newimage2", path: "/DOM/images/newImages-2.jpg", image: null},
-    {id: "newimage3", path: "/DOM/images/newImages-3.jpg", image: null},
-    {id: "newimage4", path: "/DOM/images/newImages-4.jpg", image: null},
-    {id: "newimage5", path: "/DOM/images/newImages-5.jpg", image: null},
+    {id: "newimage1", path: "DOM/images/newImages-1.jpg", image: null},
+    {id: "newimage2", path: "DOM/images/newImages-2.jpg", image: null},
+    {id: "newimage3", path: "DOM/images/newImages-3.jpg", image: null},
+    {id: "newimage4", path: "DOM/images/newImages-4.jpg", image: null},
+    {id: "newimage5", path: "DOM/images/newImages-5.jpg", image: null},
 ]
 
 //add images of prince
