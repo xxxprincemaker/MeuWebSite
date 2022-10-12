@@ -6,6 +6,7 @@ const body = document.body;
     let div = document.createElement('div');
     div.className = 'centered scroll';
     div.id = 'divBody';
+    div.style.alignItems = "stretch";
     section.appendChild(div);
 })();
 
@@ -34,6 +35,13 @@ divImages.id = 'divImages';
 divImages.style.display = 'flex';
 divImages.style.justifyContent = 'center';
 divImages.style.marginTop = "2em";
+
+divImagesRow = document.createElement('div');
+divImagesRow.id = 'divImagesRow';
+divImagesRow.style.display = 'flex';
+divImagesRow.style.justifyContent = 'center';
+divImagesRow.style.marginTop = "2em";
+divImages.appendChild(divImagesRow);
 divBody.appendChild(divImages);
 
 function addImages(idImage, path){
@@ -55,7 +63,7 @@ function addImages(idImage, path){
     image.style.borderStyle="dotted"
 
     boxOfImages.appendChild(image);
-    divImages.appendChild(boxOfImages);
+    divImagesRow.appendChild(boxOfImages);
 
     return image;
 }
@@ -96,13 +104,17 @@ buttonImages.id = "addImages";
 buttonImages.style.marginTop = "2em";
 divBody.appendChild(buttonImages);
 
+
 function addNewImage(){
+    let boxOfImages = document.createElement('div');
+
     let newImage = document.createElement('img');
 
     let randomImage = Math.floor(Math.random() * 5) + 1;
 
     newImage.setAttribute("src", setOfINewImages[randomImage].path);
     newImage.setAttribute("id", setOfINewImages[randomImage].id);
+    boxOfImages.id = 'boxOfImages' + setOfINewImages[randomImage].id;
 
     newImage.style.height="7em";
     newImage.style.width="7em";
@@ -111,21 +123,24 @@ function addNewImage(){
     newImage.style.alignContent="center";
     newImage.style.borderColor="#8A2BE2"
     newImage.style.borderStyle="dotted"
+    newImage.style.display="flex";
 
-    divImages.appendChild(newImage);
+    boxOfImages.appendChild(newImage);
+    divImagesRow.appendChild(boxOfImages);
 
     newImage.onclick = function (){
+        document.getElementById('boxOfImages' + setOfINewImages[randomImage].id).remove();
         newImage.remove();
     }
-}
 
+}
 
 //make all prince images visible again
 window.onkeydown = function (event){
     if (event.ctrlKey && event.shiftKey && event.altKey){
-       for (let image of setOfImages){
-            let figure = image.image.parentElement
-            figure.style.display = "block"
+       for (let images of setOfImages){
+            let figure = images.image.parentElement
+            figure.style.display = "";
        }
     }
 }
