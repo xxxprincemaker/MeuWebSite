@@ -133,7 +133,7 @@ function addNewImage(){
 
     let newImage = document.createElement('img');
 
-    let randomImage = Math.floor(Math.random() * 5) + 1;
+    let randomImage = Math.floor(Math.random() * 5);
 
     let randomNumber = Math.floor(Math.random() * 1000) + 1;
 
