@@ -135,9 +135,12 @@ function addNewImage(){
 
     let randomImage = Math.floor(Math.random() * 5) + 1;
 
+    let randomNumber = Math.floor(Math.random() * 1000) + 1;
+
     newImage.setAttribute("src", setOfINewImages[randomImage].path);
     newImage.setAttribute("id", setOfINewImages[randomImage].id);
-    boxOfImages.id = 'boxOfImages' + setOfINewImages[randomImage].id;
+    boxOfImages.id = 'boxOfImages' + setOfINewImages[randomImage].id + randomNumber;
+
 
     newImage.style.height="7em";
     newImage.style.width="7em";
@@ -152,7 +155,7 @@ function addNewImage(){
     divImagesRow.appendChild(boxOfImages);
 
     newImage.onclick = function (){
-        document.getElementById('boxOfImages' + setOfINewImages[randomImage].id).remove();
+        document.getElementById('boxOfImages' + setOfINewImages[randomImage].id + randomNumber).remove();
         newImage.remove();
     }
 
