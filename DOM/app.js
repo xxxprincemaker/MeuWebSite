@@ -56,12 +56,14 @@ divImages.id = 'divImages';
 divImages.style.display = 'flex';
 divImages.style.justifyContent = 'center';
 divImages.style.marginTop = "2em";
+divImages.style.flexWrap = 'wrap';
 
 divImagesRow = document.createElement('div');
 divImagesRow.id = 'divImagesRow';
 divImagesRow.style.display = 'flex';
 divImagesRow.style.justifyContent = 'center';
 divImagesRow.style.marginTop = "2em";
+divImagesRow.style.flexWrap = 'wrap';
 divImages.appendChild(divImagesRow);
 divBody.appendChild(divImages);
 
