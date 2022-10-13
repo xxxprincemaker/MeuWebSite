@@ -7,10 +7,13 @@ const body = document.body;
     body.appendChild(main);
 })();
 
+
+const main = document.getElementById('main');
+
 (function createSection() {
     let section = document.createElement('section');
     section.id = 'mySec';
-    body.appendChild(section);
+    main.appendChild(section);
 })();
 
 const section = document.getElementById("mySec");
