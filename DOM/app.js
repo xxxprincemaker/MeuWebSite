@@ -19,6 +19,7 @@ const section = document.getElementById("mySec");
     let divTittle = document.createElement('div');
     divTittle.id = 'divTittle';
     divTittle.className='main-title';
+    divTittle.style.marginBottom = "1.5em"
     divTittle.innerHTML = '<h2>A<span>PI</span> <span class="bg-text">API DOM</span> </h2>';
     section.appendChild(divTittle);
 })();
