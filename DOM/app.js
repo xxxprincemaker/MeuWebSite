@@ -1,6 +1,27 @@
-const section = document.getElementById("mySec");
+
 const body = document.body;
 
+(function createMain(){
+    let main = document.createElement('main');
+    main.id = 'main';
+    body.appendChild(main);
+})();
+
+(function createSection() {
+    let section = document.createElement('section');
+    section.id = 'mySec';
+    body.appendChild(section);
+})();
+
+const section = document.getElementById("mySec");
+
+(function createDivTittle(){
+    let divTittle = document.createElement('div');
+    divTittle.id = 'divTittle';
+    divTittle.className='main-title';
+    divTittle.innerHTML = '<h2>A<span>PI</span> <span class="bg-text">API DOM</span> </h2>';
+    section.appendChild(divTittle);
+})();
 
 (function createDivBody(){
     let div = document.createElement('div');
