@@ -162,7 +162,6 @@ function addNewImage(){
         document.getElementById('boxOfImages' + setOfINewImages[randomImage].id + randomNumber).remove();
         newImage.remove();
     }
-
 }
 
 //make all prince images visible again
