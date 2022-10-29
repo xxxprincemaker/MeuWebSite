@@ -102,6 +102,14 @@ const canvas = document.getElementById("canvasOthello");
                 document.getElementById('circulo['+i+','+j+']').style.border = '1px solid #8A2BE2';
                 document.getElementById('circulo['+i+','+j+']').style.display = 'flex';
                 }
+            else if(matrixCanvas[i-1][j-1] == CoresPecas.Branca){
+                matrixCanvas[i-1][j-1] = CoresPecas.Vazia;
+                document.getElementById('circulo['+i+','+j+']').style.display = 'none';
+                }
+            else if(matrixCanvas[i-1][j-1] == CoresPecas.Preta){
+                matrixCanvas[i-1][j-1] = CoresPecas.Branca;
+                document.getElementById('circulo['+i+','+j+']').style.backgroundColor = 'white';
+                }
             });
         }
     }
