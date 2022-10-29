@@ -25,6 +25,7 @@ const canvas = document.getElementById("canvasOthello");
         divLinha.id = 'coluna[' + i + ']';
         divLinha.style.display = 'flex';
         divLinha.style.flexWrap = 'wrap';
+        divLinha.style.flexDirection = 'row';
         divLinha.height = '85px';
         divLinha.width = '680px';
         for(let j = 1; j <= 8; j++){
@@ -33,20 +34,19 @@ const canvas = document.getElementById("canvasOthello");
             div.style.width = '85px';
             div.style.height = '85px';
             div.style.border = '1px solid #8A2BE2';
-            div.style.alignItems = "stretch";
+            div.style.display = 'flex';
+            div.style.justifyContent = 'center';
+            div.style.alignItems = 'center';
 
             let botaoCirculo = document.createElement('div');
             botaoCirculo.id = 'circulo[' + i + ',' + j+']';
             botaoCirculo.style.width = '70px';
             botaoCirculo.style.height = '70px';
             botaoCirculo.style.borderRadius = '50%';
-            botaoCirculo.style.alignContent="center";
-            botaoCirculo.style.marginTop = '6px';
-            botaoCirculo.style.marginLeft = '6px';
+
 
             if(matrixCanvas[i-1][j-1] == CoresPecas.Vazia){
                 botaoCirculo.style.display = 'none';
-                botaoCirculo.style.border = '1px solid #8A2BE2';
             } else if (matrixCanvas[i-1][j-1] == CoresPecas.Preta){
                 botaoCirculo.style.border = '1px solid #8A2BE2';
                 botaoCirculo.style.backgroundColor = '#8A2BE2';
