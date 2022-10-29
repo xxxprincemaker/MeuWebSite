@@ -50,7 +50,7 @@ const canvas = document.getElementById("canvasOthello");
 (function desenharTabuleiro() {
     for(let i = 1; i <= 8; i++){
         let divLinha = document.createElement('div');
-        divLinha.id = 'linha[' + i + ']';
+        divLinha.id = 'coluna[' + i + ']';
         divLinha.style.display = 'flex';
         divLinha.style.flexWrap = 'wrap';
         divLinha.height = '85px';
@@ -62,10 +62,50 @@ const canvas = document.getElementById("canvasOthello");
             div.style.height = '85px';
             div.style.border = '1px solid #8A2BE2';
             div.style.alignItems = "stretch";
+
+            let botaoCirculo = document.createElement('div');
+            botaoCirculo.id = 'circulo[' + i + ',' + j+']';
+            botaoCirculo.style.width = '70px';
+            botaoCirculo.style.height = '70px';
+            botaoCirculo.style.borderRadius = '50%';
+            botaoCirculo.style.alignContent="center";
+            botaoCirculo.style.marginTop = '6px';
+            botaoCirculo.style.marginLeft = '6px';
+
+            if(matrixCanvas[i-1][j-1] == CoresPecas.Vazia){
+                botaoCirculo.style.display = 'none';
+                botaoCirculo.style.border = '1px solid #8A2BE2';
+            } else if (matrixCanvas[i-1][j-1] == CoresPecas.Preta){
+                botaoCirculo.style.border = '1px solid #8A2BE2';
+                botaoCirculo.style.backgroundColor = '#8A2BE2';
+            } else {
+                botaoCirculo.style.backgroundColor = 'white';
+            }
+            div.appendChild(botaoCirculo);
+
             divLinha.appendChild(div);
         }
         canvas.appendChild(divLinha);
     }
+})();
+
+
+(function desenharPeca(){
+
+    for(let i = 1; i <= 8; i++){
+        for(let j = 1; j <= 8; j++){
+        let element = document.getElementById('bloco['+i+','+j+']');
+        element.addEventListener('click', function(){
+            if(matrixCanvas[i-1][j-1] == CoresPecas.Vazia){
+                matrixCanvas[i-1][j-1] = CoresPecas.Branca;
+                document.getElementById('circulo['+i+','+j+']').style.backgroundColor = 'white';
+                document.getElementById('circulo['+i+','+j+']').style.border = '1px solid #8A2BE2';
+                document.getElementById('circulo['+i+','+j+']').style.display = 'flex';
+                }
+            });
+        }
+    }
+    console.log(element);
 })();
 
 console.log(matrixCanvas);
