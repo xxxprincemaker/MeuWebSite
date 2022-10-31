@@ -81,7 +81,5 @@ const canvas = document.getElementById("canvasOthello");
             });
         }
     }
-    console.log(element);
 })();
 
-console.log(matrixCanvas);
