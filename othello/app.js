@@ -1,9 +1,5 @@
 let jogador = 1;
 
-(function teste() {
-  console.log("teste");
-})();
-
 const CoresPecas = { Vazia: 0, Branca: 1, Preta: 2 };
 
 const matrixCanvas = Array(8)
@@ -22,7 +18,7 @@ const canvas = document.getElementById("canvasOthello");
 (function desenharTabuleiro() {
     for(let i = 1; i <= 8; i++){
         let divLinha = document.createElement('div');
-        divLinha.id = 'coluna[' + i + ']';
+        divLinha.id = 'linha[' + i + ']';
         divLinha.style.display = 'flex';
         divLinha.style.flexWrap = 'wrap';
         divLinha.style.flexDirection = 'row';
