@@ -1,4 +1,5 @@
-let jogador = 1;
+let jogador = 2;
+let validacaoFinal = 0;
 
 const CoresPecas = { Vazia: 0, Branca: 1, Preta: 2 };
 
@@ -16,7 +17,7 @@ const matrixCanvas = Array(8)
 
 const canvas = document.getElementById("canvasOthello");
 (function desenharTabuleiro() {
-    for(let i = 1; i <= 8; i++){
+    for(let i = 0; i < 8; i++){
         let divLinha = document.createElement('div');
         divLinha.id = 'linha[' + i + ']';
         divLinha.style.display = 'flex';
@@ -24,7 +25,7 @@ const canvas = document.getElementById("canvasOthello");
         divLinha.style.flexDirection = 'row';
         divLinha.height = '85px';
         divLinha.width = '680px';
-        for(let j = 1; j <= 8; j++){
+        for(let j = 0; j < 8; j++){
             let div = document.createElement('div');
             div.id = 'bloco[' + i + ',' + j+']';
             div.style.width = '85px';
@@ -41,9 +42,9 @@ const canvas = document.getElementById("canvasOthello");
             botaoCirculo.style.borderRadius = '50%';
 
 
-            if(matrixCanvas[i-1][j-1] == CoresPecas.Vazia){
+            if(matrixCanvas[i][j] == CoresPecas.Vazia){
                 botaoCirculo.style.display = 'none';
-            } else if (matrixCanvas[i-1][j-1] == CoresPecas.Preta){
+            } else if (matrixCanvas[i][j] == CoresPecas.Preta){
                 botaoCirculo.style.border = '1px solid #8A2BE2';
                 botaoCirculo.style.backgroundColor = '#8A2BE2';
             } else {
@@ -60,26 +61,30 @@ const canvas = document.getElementById("canvasOthello");
 
 (function desenharPeca(){
 
-    for(let i = 1; i <= 8; i++){
-        for(let j = 1; j <= 8; j++){
-        let element = document.getElementById('bloco['+i+','+j+']');
-        element.addEventListener('click', function(){
-            if(jogador == 1){
-                    matrixCanvas[i-1][j-1] = CoresPecas.Branca;
-                    document.getElementById('circulo['+i+','+j+']').style.backgroundColor = 'white';
-                    document.getElementById('circulo['+i+','+j+']').style.border = '1px solid white';
-                    document.getElementById('circulo['+i+','+j+']').style.display = 'flex';
-                    jogador = 2;
-            }
-            else {
-                    matrixCanvas[i-1][j-1] = CoresPecas.Preta;
-                    document.getElementById('circulo['+i+','+j+']').style.display = 'flex';
-                    document.getElementById('circulo['+i+','+j+']').style.border = '1px solid #8A2BE2';
-                    document.getElementById('circulo['+i+','+j+']').style.backgroundColor = '#8A2BE2';
-                    jogador = 1;
+    for(let i = 0; i < 8; i++){
+        for(let j = 0; j < 8; j++){
+            let element = document.getElementById('bloco['+i+','+j+']');
+            element.addEventListener('click', function(movimentoValido){
+                movimentoValido(i,j);
+                if(validacaoFinal == 0){
+                    if(jogador == 1 && matrixCanvas[i][j] == CoresPecas.Vazia){
+                        matrixCanvas[i][j] = CoresPecas.Branca;
+                        document.getElementById('circulo['+i+','+j+']').style.backgroundColor = 'white';
+                        document.getElementById('circulo['+i+','+j+']').style.border = '1px solid white';
+                        document.getElementById('circulo['+i+','+j+']').style.display = 'flex';
+                        jogador = 2;
+                    }
+                    else if(jogador == 2 && matrixCanvas[i][j] == CoresPecas.Vazia) {
+                        matrixCanvas[i][j] = CoresPecas.Preta;
+                        document.getElementById('circulo['+i+','+j+']').style.display = 'flex';
+                        document.getElementById('circulo['+i+','+j+']').style.border = '1px solid #8A2BE2';
+                        document.getElementById('circulo['+i+','+j+']').style.backgroundColor = '#8A2BE2';
+                        jogador = 1;
+                    }
                 }
             });
         }
     }
 })();
 
+console.log(matrixCanvas);
