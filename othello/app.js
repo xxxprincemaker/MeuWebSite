@@ -1,4 +1,4 @@
-let jogador = 2;
+let jogador = 1;
 let validacaoFinal = 0;
 
 const CoresPecas = { Vazia: 0, Branca: 1, Preta: 2 };
@@ -64,9 +64,9 @@ const canvas = document.getElementById("canvasOthello");
     for(let i = 0; i < 8; i++){
         for(let j = 0; j < 8; j++){
             let element = document.getElementById('bloco['+i+','+j+']');
-            element.addEventListener('click', function(movimentoValido){
+            element.addEventListener('click', function(){
                 movimentoValido(i,j);
-                if(validacaoFinal == 0){
+                if(validacaoFinal == 1){
                     if(jogador == 1 && matrixCanvas[i][j] == CoresPecas.Vazia){
                         matrixCanvas[i][j] = CoresPecas.Branca;
                         document.getElementById('circulo['+i+','+j+']').style.backgroundColor = 'white';
@@ -76,9 +76,9 @@ const canvas = document.getElementById("canvasOthello");
                     }
                     else if(jogador == 2 && matrixCanvas[i][j] == CoresPecas.Vazia) {
                         matrixCanvas[i][j] = CoresPecas.Preta;
-                        document.getElementById('circulo['+i+','+j+']').style.display = 'flex';
-                        document.getElementById('circulo['+i+','+j+']').style.border = '1px solid #8A2BE2';
                         document.getElementById('circulo['+i+','+j+']').style.backgroundColor = '#8A2BE2';
+                        document.getElementById('circulo['+i+','+j+']').style.border = '1px solid #8A2BE2';
+                        document.getElementById('circulo['+i+','+j+']').style.display = 'flex';
                         jogador = 1;
                     }
                 }
@@ -86,5 +86,385 @@ const canvas = document.getElementById("canvasOthello");
         }
     }
 })();
+
+function movimentoValido(i,j){
+    validacaoFinal = 0;
+    checarDirecaoNorte(i,j);
+    checarDirecaoSul(i,j);
+    checarDirecaoLeste(i,j);
+    checarDirecaoOeste(i,j);
+    checarDirecaoNordeste(i,j);
+    checarDirecaoSudeste(i,j);
+    checarDirecaoSudoeste(i,j);
+    checarDirecaoNoroeste(i,j);
+};
+
+function checarDirecaoNorte(i,j){
+    let validacaoInicial = 0;
+    let x = 0;
+    let y = 0;
+
+    for(x = i-1, y = j; x >= 0; x--){
+        if (validacaoInicial == 0){
+            if(x < 0 || matrixCanvas[x][y] == CoresPecas.Vazia){
+                x = -1;
+            } else if (jogador == 1 && (matrixCanvas[x][y] == CoresPecas.Branca) ||
+                       jogador == 2 && (matrixCanvas[x][y] == CoresPecas.Preta)){
+                x = -1;
+            } else {
+                validacaoInicial = 1;
+            }
+        } else {
+            if(jogador == 1 && matrixCanvas[x][y] == CoresPecas.Branca){
+                let a = 0;
+                for (a = x+1; a < i; a++){
+                    matrixCanvas[a][y] = CoresPecas.Branca;
+                    document.getElementById('circulo['+a+','+y+']').style.backgroundColor = 'white';
+                    document.getElementById('circulo['+a+','+y+']').style.border = '1px solid white';
+                    document.getElementById('circulo['+a+','+y+']').style.display = 'flex';
+                }
+                validacaoFinal = 1;
+                x = -1;
+            } else {
+                if(jogador == 2 && matrixCanvas[x][y] == CoresPecas.Preta){
+                    let a = 0;
+                    for (a = x+1; a < i; a++){
+                        matrixCanvas[a][y] = CoresPecas.Preta;
+                        document.getElementById('circulo['+a+','+y+']').style.backgroundColor = '#8A2BE2';
+                        document.getElementById('circulo['+a+','+y+']').style.border = '1px solid #8A2BE2';
+                        document.getElementById('circulo['+a+','+y+']').style.display = 'flex';
+                    }
+                    validacaoFinal = 1;
+                    x = -1;
+                } else if (matrixCanvas[x][y] == CoresPecas.Vazia){
+                    x = -1;
+                }
+            }
+        }
+    }
+};
+
+function checarDirecaoSul(i,j){
+    let validacaoInicial = 0;
+    let x = 0;
+    let y = 0;
+
+    for(x = i+1, y = j; x <= 7; x++){
+        if (validacaoInicial == 0){
+            if(x > 7 || matrixCanvas[x][y] == CoresPecas.Vazia){
+                x = 8;
+            } else if (jogador == 1 && (matrixCanvas[x][y] == CoresPecas.Branca) ||
+                       jogador == 2 && (matrixCanvas[x][y] == CoresPecas.Preta)){
+                x = 8;
+            } else {
+                validacaoInicial = 1;
+            }
+        } else {
+            if(jogador == 1 && matrixCanvas[x][y] == CoresPecas.Branca){
+                let a = 0;
+                for (a = x-1; a > i; a--){
+                    matrixCanvas[a][y] = CoresPecas.Branca;
+                    document.getElementById('circulo['+a+','+y+']').style.backgroundColor = 'white';
+                    document.getElementById('circulo['+a+','+y+']').style.border = '1px solid white';
+                    document.getElementById('circulo['+a+','+y+']').style.display = 'flex';
+                }
+                validacaoFinal = 1;
+                x = 8;
+            } else {
+                if(jogador == 2 && matrixCanvas[x][y] == CoresPecas.Preta){
+                    let a = 0;
+                    for (a = x-1; a > i; a--){
+                        matrixCanvas[a][y] = CoresPecas.Preta;
+                        document.getElementById('circulo['+a+','+y+']').style.backgroundColor = '#8A2BE2';
+                        document.getElementById('circulo['+a+','+y+']').style.border = '1px solid #8A2BE2';
+                        document.getElementById('circulo['+a+','+y+']').style.display = 'flex';
+                    }
+                    validacaoFinal = 1;
+                    x = 8;
+                } else if (matrixCanvas[x][y] == CoresPecas.Vazia){
+                    x = 8;
+                }
+            }
+        }
+    }
+};
+
+function checarDirecaoLeste(i,j){
+    let validacaoInicial = 0;
+    let x = 0;
+    let y = 0;
+
+    for(x = i, y = j+1; y <= 7; y++){
+        if (validacaoInicial == 0){
+            if(y > 7 || matrixCanvas[x][y] == CoresPecas.Vazia){
+                y = 8;
+            } else if (jogador == 1 && (matrixCanvas[x][y] == CoresPecas.Branca) ||
+                       jogador == 2 && (matrixCanvas[x][y] == CoresPecas.Preta)){
+                y = 8;
+            } else {
+                validacaoInicial = 1;
+            }
+        } else {
+            if(jogador == 1 && matrixCanvas[x][y] == CoresPecas.Branca){
+                let b = 0;
+                for (b = y-1; b > j; b--){
+                    matrixCanvas[x][b] = CoresPecas.Branca;
+                    document.getElementById('circulo['+x+','+b+']').style.backgroundColor = 'white';
+                    document.getElementById('circulo['+x+','+b+']').style.border = '1px solid white';
+                    document.getElementById('circulo['+x+','+b+']').style.display = 'flex';
+                }
+                validacaoFinal = 1;
+                y = 8;
+            } else {
+                if(jogador == 2 && matrixCanvas[x][y] == CoresPecas.Preta){
+                    let b = 0;
+                    for (b = y-1; b > j; b--){
+                        matrixCanvas[x][b] = CoresPecas.Preta;
+                        document.getElementById('circulo['+x+','+b+']').style.backgroundColor = '#8A2BE2';
+                        document.getElementById('circulo['+x+','+b+']').style.border = '1px solid #8A2BE2';
+                        document.getElementById('circulo['+x+','+b+']').style.display = 'flex';
+                    }
+                    validacaoFinal = 1;
+                    y = 8;
+                } else if (matrixCanvas[x][y] == CoresPecas.Vazia){
+                    y = 8;
+                }
+            }
+        }
+    }
+};
+
+function checarDirecaoOeste(i,j){
+    let validacaoInicial = 0;
+    let x = 0;
+    let y = 0;
+
+    for(x = i, y = j-1; y >= 0; y--){
+        if (validacaoInicial == 0){
+            if(y < 0 || matrixCanvas[x][y] == CoresPecas.Vazia){
+                y = -1;
+            } else if (jogador == 1 && (matrixCanvas[x][y] == CoresPecas.Branca) ||
+                       jogador == 2 && (matrixCanvas[x][y] == CoresPecas.Preta)){
+                y = -1;
+            } else {
+                validacaoInicial = 1;
+            }
+        } else {
+            if(jogador == 1 && matrixCanvas[x][y] == CoresPecas.Branca){
+                let b = 0;
+                for (b = y+1; b < j; b++){
+                    matrixCanvas[x][b] = CoresPecas.Branca;
+                    document.getElementById('circulo['+x+','+b+']').style.backgroundColor = 'white';
+                    document.getElementById('circulo['+x+','+b+']').style.border = '1px solid white';
+                    document.getElementById('circulo['+x+','+b+']').style.display = 'flex';
+                }
+                validacaoFinal = 1;
+                y = -1;
+            } else {
+                if(jogador == 2 && matrixCanvas[x][y] == CoresPecas.Preta){
+                    let b = 0;
+                    for (b = y+1; b < j; b++){
+                        matrixCanvas[x][b] = CoresPecas.Preta;
+                        document.getElementById('circulo['+x+','+b+']').style.backgroundColor = '#8A2BE2';
+                        document.getElementById('circulo['+x+','+b+']').style.border = '1px solid #8A2BE2';
+                        document.getElementById('circulo['+x+','+b+']').style.display = 'flex';
+                    }
+                    validacaoFinal = 1;
+                    y = -1;
+                } else if (matrixCanvas[x][y] == CoresPecas.Vazia){
+                    y = -1;
+                }
+            }
+        }
+    }
+};
+
+function checarDirecaoNordeste(i,j){
+    let validacaoInicial = 0;
+    let x = 0;
+    let y = 0;
+
+    for(x = i-1, y = j+1; x >= 0 && y <= 7; x--, y++){
+        if (validacaoInicial == 0){
+            if(x < 0 || y > 7 || matrixCanvas[x][y] == CoresPecas.Vazia){
+                x = -1;
+            } else if (jogador == 1 && (matrixCanvas[x][y] == CoresPecas.Branca) ||
+                       jogador == 2 && (matrixCanvas[x][y] == CoresPecas.Preta)){
+                x = -1;
+            } else {
+                validacaoInicial = 1;
+            }
+        } else {
+            if(jogador == 1 && matrixCanvas[x][y] == CoresPecas.Branca){
+                let a = 0
+                let b = 0;
+                for (a= x+1, b = y-1; a < i && b > j; a++, b--){
+                    matrixCanvas[a][b] = CoresPecas.Branca;
+                    document.getElementById('circulo['+a+','+b+']').style.backgroundColor = 'white';
+                    document.getElementById('circulo['+a+','+b+']').style.border = '1px solid white';
+                    document.getElementById('circulo['+a+','+b+']').style.display = 'flex';
+                }
+                validacaoFinal = 1;
+                x = -1;
+            } else {
+                if(jogador == 2 && matrixCanvas[x][y] == CoresPecas.Preta){
+                    let a = 0
+                    let b = 0;
+                    for (a= x+1, b = y-1; a < i && b > j; a++, b--){
+                        matrixCanvas[a][b] = CoresPecas.Preta;
+                        document.getElementById('circulo['+a+','+b+']').style.backgroundColor = '#8A2BE2';
+                        document.getElementById('circulo['+a+','+b+']').style.border = '1px solid #8A2BE2';
+                        document.getElementById('circulo['+a+','+b+']').style.display = 'flex';
+                    }
+                    validacaoFinal = 1;
+                    x = -1;
+                } else if (matrixCanvas[x][y] == CoresPecas.Vazia){
+                    x = -1;
+                }
+            }
+        }
+    }
+};
+
+function checarDirecaoSudeste(i,j){
+    let validacaoInicial = 0;
+    let x = 0;
+    let y = 0;
+
+    for(x = i+1, y = j+1; x <= 7 && y <= 7; x++, y++){
+        if (validacaoInicial == 0){
+            if(x > 7 || y > 7 || matrixCanvas[x][y] == CoresPecas.Vazia){
+                x = 8;
+            } else if (jogador == 1 && (matrixCanvas[x][y] == CoresPecas.Branca) ||
+                       jogador == 2 && (matrixCanvas[x][y] == CoresPecas.Preta)){
+                x = 8;
+            } else {
+                validacaoInicial = 1;
+            }
+        } else {
+            if(jogador == 1 && matrixCanvas[x][y] == CoresPecas.Branca){
+                let a = 0
+                let b = 0;
+                for (a = x-1, b = y-1; a > i && b > j; a--, b--){
+                    matrixCanvas[a][b] = CoresPecas.Branca;
+                    document.getElementById('circulo['+a+','+b+']').style.backgroundColor = 'white';
+                    document.getElementById('circulo['+a+','+b+']').style.border = '1px solid white';
+                    document.getElementById('circulo['+a+','+b+']').style.display = 'flex';
+                }
+                validacaoFinal = 1;
+                x = 8;
+            } else {
+                if(jogador == 2 && matrixCanvas[x][y] == CoresPecas.Preta){
+                    let a = 0
+                    let b = 0;
+                    for (a = x-1, b = y-1; a > i && b > j; a--, b--){
+                        matrixCanvas[a][b] = CoresPecas.Preta;
+                        document.getElementById('circulo['+a+','+b+']').style.backgroundColor = '#8A2BE2';
+                        document.getElementById('circulo['+a+','+b+']').style.border = '1px solid #8A2BE2';
+                        document.getElementById('circulo['+a+','+b+']').style.display = 'flex';
+                    }
+                    validacaoFinal = 1;
+                    x = 8;
+                } else if (matrixCanvas[x][y] == CoresPecas.Vazia){
+                    x = 8;
+                }
+            }
+        }
+    }
+};
+
+function checarDirecaoSudoeste(i,j){
+    let validacaoInicial = 0;
+    let x = 0;
+    let y = 0;
+
+    for(x = i+1, y = j-1; x <= 7 && y >= 0; x++, y--){
+        if (validacaoInicial == 0){
+            if(x > 7 || y < 0 || matrixCanvas[x][y] == CoresPecas.Vazia){
+                x = 8;
+            } else if (jogador == 1 && (matrixCanvas[x][y] == CoresPecas.Branca) ||
+                       jogador == 2 && (matrixCanvas[x][y] == CoresPecas.Preta)){
+                x = 8;
+            } else {
+                validacaoInicial = 1;
+            }
+        } else {
+            if(jogador == 1 && matrixCanvas[x][y] == CoresPecas.Branca){
+                let a = 0
+                let b = 0;
+                for (a= x-1, b = y+1; a > i && b < j; a--, b++){
+                    matrixCanvas[a][b] = CoresPecas.Branca;
+                    document.getElementById('circulo['+a+','+b+']').style.backgroundColor = 'white';
+                    document.getElementById('circulo['+a+','+b+']').style.border = '1px solid white';
+                    document.getElementById('circulo['+a+','+b+']').style.display = 'flex';
+                }
+                validacaoFinal = 1;
+                x = 8;
+            } else {
+                if(jogador == 2 && matrixCanvas[x][y] == CoresPecas.Preta){
+                    let a = 0
+                    let b = 0;
+                    for (a= x-1, b = y+1; a > i && b < j; a--, b++){
+                        matrixCanvas[a][b] = CoresPecas.Preta;
+                        document.getElementById('circulo['+a+','+b+']').style.backgroundColor = '#8A2BE2';
+                        document.getElementById('circulo['+a+','+b+']').style.border = '1px solid #8A2BE2';
+                        document.getElementById('circulo['+a+','+b+']').style.display = 'flex';
+                    }
+                    validacaoFinal = 1;
+                    x = 8;
+                } else if (matrixCanvas[x][y] == CoresPecas.Vazia){
+                    x = 8;
+                }
+            }
+        }
+    }
+};
+
+function checarDirecaoNoroeste(i,j){
+    let validacaoInicial = 0;
+    let x = 0;
+    let y = 0;
+
+    for(x = i-1, y = j-1; x >= 0 && y >= 0; x--, y--){
+        if (validacaoInicial == 0){
+            if(x < 0 || y < 0 || matrixCanvas[x][y] == CoresPecas.Vazia){
+                x = -1;
+            } else if (jogador == 1 && (matrixCanvas[x][y] == CoresPecas.Branca) ||
+                       jogador == 2 && (matrixCanvas[x][y] == CoresPecas.Preta)){
+                x = -1;
+            } else {
+                validacaoInicial = 1;
+            }
+        } else {
+            if(jogador == 1 && matrixCanvas[x][y] == CoresPecas.Branca){
+                let a = 0
+                let b = 0;
+                for (a= x+1, b = y+1; a < i && b < j; a++, b++){
+                    matrixCanvas[a][b] = CoresPecas.Branca;
+                    document.getElementById('circulo['+a+','+b+']').style.backgroundColor = 'white';
+                    document.getElementById('circulo['+a+','+b+']').style.border = '1px solid white';
+                    document.getElementById('circulo['+a+','+b+']').style.display = 'flex';
+                }
+                validacaoFinal = 1;
+                x = -1;
+            } else {
+                if(jogador == 2 && matrixCanvas[x][y] == CoresPecas.Preta){
+                    let a = 0
+                    let b = 0;
+                    for (a= x+1, b = y+1; a < i && b < j; a++, b++){
+                        matrixCanvas[a][b] = CoresPecas.Preta;
+                        document.getElementById('circulo['+a+','+b+']').style.backgroundColor = '#8A2BE2';
+                        document.getElementById('circulo['+a+','+b+']').style.border = '1px solid #8A2BE2';
+                        document.getElementById('circulo['+a+','+b+']').style.display = 'flex';
+                    }
+                    validacaoFinal = 1;
+                    x = -1;
+                } else if (matrixCanvas[x][y] == CoresPecas.Vazia){
+                    x = -1;
+                }
+            }
+        }
+    }
+};
 
 console.log(matrixCanvas);
