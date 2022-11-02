@@ -466,5 +466,3 @@ function checarDirecaoNoroeste(i,j){
         }
     }
 };
-
-console.log(matrixCanvas);
