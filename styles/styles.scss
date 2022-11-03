@@ -802,4 +802,19 @@ section {
     cursor: pointer;
   }
 
+  .container123 {   display: grid;
+    grid-template-columns: 0.9fr 1.1fr 1fr;
+    grid-template-rows: 0.7fr 1.3fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "Placar Placar Placar"
+      "Player1 Vencedor Player2"
+      "Player1 VezJogador Player2";
+  }
+  .Placar { grid-area: Placar; }
+  .Player1 { grid-area: Player1; }
+  .Player2 { grid-area: Player2; }
+  .VezJogador { grid-area: VezJogador; }
+  .Vencedor { grid-area: Vencedor; }
+
 @import './media';

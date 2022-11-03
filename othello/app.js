@@ -101,7 +101,88 @@ const canvas = document.getElementById("canvasOthello");
     }
 })();
 
+(function placar(){
+    let placar = document.getElementById('placar');
+
+    let placarRoxo = document.getElementById('placarRoxo');
+    let placarBranco = document.getElementById('placarBranco');
+
+    let h3Roxo = document.createElement('h3');
+    h3Roxo.id = 'h3Roxo';
+    h3Roxo.style.color = '#8A2BE2';
+    h3Roxo.style.fontSize = '30px';
+    h3Roxo.style.fontWeight = 'bold';
+    h3Roxo.style.margin = '0px';
+    h3Roxo.style.padding = '0px';
+    h3Roxo.style.textAlign = 'center';
+    h3Roxo.innerHTML = pecasPretas;
+
+    let h3Branco = document.createElement('h3');
+    h3Branco.id = 'h3Branco';
+    h3Branco.style.color = 'white';
+    h3Branco.style.fontSize = '30px';
+    h3Branco.style.fontWeight = 'bold';
+    h3Branco.style.margin = '0px';
+    h3Branco.style.padding = '0px';
+    h3Branco.style.textAlign = 'center';
+    h3Branco.innerHTML = pecasBrancas;
+
+    placarRoxo.appendChild(h3Roxo);
+    placarBranco.appendChild(h3Branco);
+})();
+
+(function observarTotalPecas(){
+    let h3Roxo = document.getElementById('h3Roxo');
+    let h3Branco = document.getElementById('h3Branco');
+
+    h3Roxo.innerHTML = pecasPretas;
+    h3Branco.innerHTML = pecasBrancas;
+
+    setTimeout(observarTotalPecas, 100);
+})();
+
+(function vezJogador(){
+    let vezJogador = document.getElementById('vezJogador');
+    let h3 = document.createElement('h3');
+    h3.id = 'h3VezJogador';
+    h3.style.color = 'white';
+    h3.style.fontSize = '25px';
+    h3.style.fontWeight = 'bold';
+    h3.style.margin = '0px';
+    h3.style.padding = '0px';
+    h3.style.textAlign = 'center';
+    vezJogador.appendChild(h3);
+})();
+
+(function observarVezJogador(){
+    let h3 = document.getElementById('h3VezJogador');
+
+    if(jogador == 1){
+        h3.style.color = 'white';
+        h3.innerHTML = 'Jogador Branco';
+    } else {
+        h3.style.color = '#8A2BE2';
+        h3.innerHTML = 'Jogador Roxo';
+    }
+
+    setTimeout(observarVezJogador, 100);
+})();
+
+(function declararVencedorDiv(){
+    let vencedor = document.getElementById('vencedor');
+    let h3 = document.createElement('h3');
+    h3.id = 'h3Vencedor';
+    h3.style.color = 'white';
+    h3.style.fontSize = '35px';
+    h3.style.fontWeight = 'bold';
+    h3.style.margin = '0px';
+    h3.style.padding = '0px';
+    h3.style.textAlign = 'center';
+    vencedor.appendChild(h3);
+})();
+
 function declararVencedor(){
+    let h3 = document.getElementById('h3Vencedor');
     if ((pecasBrancas + pecasPretas) == 64){
         if (pecasBrancas > pecasPretas || pecasPretas == 0){
             vencedor = 1;
@@ -109,6 +190,16 @@ function declararVencedor(){
             vencedor = 2;
         }
     }
+    if (vencedor === 1){
+        h3.style.color = 'white';
+        h3.innerHTML = 'Vencedor\n Branco\n★';
+    }
+    if (vencedor === 2){
+        h3.style.color = '#8A2BE2';
+        h3.innerHTML = 'Vencedor\n Roxo\n★';
+    }
+
+    setTimeout(declararVencedor, 100);
 }
 
 function contaPecas(){
@@ -120,8 +211,8 @@ function contaPecas(){
                 tempPecasBrancas += 1;
             } else if (matrixCanvas[x][y] == CoresPecas.Preta ){
                 tempPecasPretas += 1;
-            } 
-        }    
+            }
+        }
     }
     pecasBrancas = tempPecasBrancas;
     pecasPretas = tempPecasPretas;
@@ -130,12 +221,12 @@ function contaPecas(){
 function limparTabuleiro(){
     for (let i = 0; i <= 7; i++){
         for (let j = 0; j <= 7; j++){
-            if (matrixCanvas[i][j] == CoresPecas.Vazia){            
+            if (matrixCanvas[i][j] == CoresPecas.Vazia){
                 document.getElementById('circulo['+i+','+j+']').style.backgroundColor = 'none';
                 document.getElementById('circulo['+i+','+j+']').style.border = 'none';
                 document.getElementById('circulo['+i+','+j+']').style.display = 'flex';
             }
-        }    
+        }
     }
 }
 
@@ -151,9 +242,9 @@ function mostrarMovimentosValidos(){
                 checarPossibilidadeNordeste(i,j);
                 checarPossibilidadeSudeste(i,j);
                 checarPossibilidadeSudoeste(i,j);
-                checarPossibilidadeNoroeste(i,j);        
+                checarPossibilidadeNoroeste(i,j);
             }
-        }    
+        }
     }
 
     if (temMovimento == 0){
@@ -187,7 +278,7 @@ function checarPossibilidadeNorte(i,j){
                 document.getElementById('circulo['+i+','+j+']').style.backgroundColor = 'none';
                 document.getElementById('circulo['+i+','+j+']').style.border = '1px solid white';
                 document.getElementById('circulo['+i+','+j+']').style.display = 'flex';
-                
+
                 temMovimento = 1;
                 x = -1;
             } else {
@@ -195,7 +286,7 @@ function checarPossibilidadeNorte(i,j){
                     document.getElementById('circulo['+i+','+j+']').style.backgroundColor = 'none';
                     document.getElementById('circulo['+i+','+j+']').style.border = '1px solid #8A2BE2';
                     document.getElementById('circulo['+i+','+j+']').style.display = 'flex';
-                    
+
                     temMovimento = 1;
                     x = -1;
                 } else if (matrixCanvas[x][y] == CoresPecas.Vazia){
@@ -203,7 +294,7 @@ function checarPossibilidadeNorte(i,j){
                 }
             }
         }
-    }  
+    }
 };
 
 function checarPossibilidadeSul(i,j){
@@ -226,7 +317,7 @@ function checarPossibilidadeSul(i,j){
                 document.getElementById('circulo['+i+','+j+']').style.backgroundColor = 'none';
                 document.getElementById('circulo['+i+','+j+']').style.border = '1px solid white';
                 document.getElementById('circulo['+i+','+j+']').style.display = 'flex';
-                
+
                 temMovimento = 1;
                 x = 8;
             } else {
@@ -234,7 +325,7 @@ function checarPossibilidadeSul(i,j){
                     document.getElementById('circulo['+i+','+j+']').style.backgroundColor = 'none';
                     document.getElementById('circulo['+i+','+j+']').style.border = '1px solid #8A2BE2';
                     document.getElementById('circulo['+i+','+j+']').style.display = 'flex';
-                    
+
                     temMovimento = 1;
                     x = 8;
                 } else if (matrixCanvas[x][y] == CoresPecas.Vazia){
@@ -265,7 +356,7 @@ function checarPossibilidadeLeste(i,j){
                 document.getElementById('circulo['+i+','+j+']').style.backgroundColor = 'none';
                 document.getElementById('circulo['+i+','+j+']').style.border = '1px solid white';
                 document.getElementById('circulo['+i+','+j+']').style.display = 'flex';
-                
+
                 temMovimento = 1;
                 y = 8;
             } else {
@@ -304,7 +395,7 @@ function checarPossibilidadeOeste(i,j){
                 document.getElementById('circulo['+i+','+j+']').style.backgroundColor = 'none';
                 document.getElementById('circulo['+i+','+j+']').style.border = '1px solid white';
                 document.getElementById('circulo['+i+','+j+']').style.display = 'flex';
-                
+
                 temMovimento = 1;
                 y = -1;
             } else {
@@ -312,7 +403,7 @@ function checarPossibilidadeOeste(i,j){
                     document.getElementById('circulo['+i+','+j+']').style.backgroundColor = 'none';
                     document.getElementById('circulo['+i+','+j+']').style.border = '1px solid #8A2BE2';
                     document.getElementById('circulo['+i+','+j+']').style.display = 'flex';
-                    
+
                     temMovimento = 1;
                     y = -1;
                 } else if (matrixCanvas[x][y] == CoresPecas.Vazia){
@@ -343,7 +434,7 @@ function checarPossibilidadeNordeste(i,j){
                 document.getElementById('circulo['+i+','+j+']').style.backgroundColor = 'none';
                 document.getElementById('circulo['+i+','+j+']').style.border = '1px solid white';
                 document.getElementById('circulo['+i+','+j+']').style.display = 'flex';
-                
+
                 temMovimento = 1;
                 x = -1;
             } else {
@@ -351,7 +442,7 @@ function checarPossibilidadeNordeste(i,j){
                     document.getElementById('circulo['+i+','+j+']').style.backgroundColor = 'none';
                     document.getElementById('circulo['+i+','+j+']').style.border = '1px solid #8A2BE2';
                     document.getElementById('circulo['+i+','+j+']').style.display = 'flex';
-                    
+
                     temMovimento = 1;
                     x = -1;
                 } else if (matrixCanvas[x][y] == CoresPecas.Vazia){
@@ -382,7 +473,7 @@ function checarPossibilidadeSudeste(i,j){
                 document.getElementById('circulo['+i+','+j+']').style.backgroundColor = 'none';
                 document.getElementById('circulo['+i+','+j+']').style.border = '1px solid white';
                 document.getElementById('circulo['+i+','+j+']').style.display = 'flex';
-                
+
                 temMovimento = 1;
                 x = 8;
             } else {
@@ -390,7 +481,7 @@ function checarPossibilidadeSudeste(i,j){
                     document.getElementById('circulo['+i+','+j+']').style.backgroundColor = 'none';
                     document.getElementById('circulo['+i+','+j+']').style.border = '1px solid #8A2BE2';
                     document.getElementById('circulo['+i+','+j+']').style.display = 'flex';
-                    
+
                     temMovimento = 1;
                     x = 8;
                 } else if (matrixCanvas[x][y] == CoresPecas.Vazia){
@@ -421,7 +512,7 @@ function checarPossibilidadeSudoeste(i,j){
                 document.getElementById('circulo['+i+','+j+']').style.backgroundColor = 'none';
                 document.getElementById('circulo['+i+','+j+']').style.border = '1px solid white';
                 document.getElementById('circulo['+i+','+j+']').style.display = 'flex';
-                
+
                 temMovimento = 1;
                 x = 8;
             } else {
@@ -429,7 +520,7 @@ function checarPossibilidadeSudoeste(i,j){
                     document.getElementById('circulo['+i+','+j+']').style.backgroundColor = 'none';
                     document.getElementById('circulo['+i+','+j+']').style.border = '1px solid #8A2BE2';
                     document.getElementById('circulo['+i+','+j+']').style.display = 'flex';
-                    
+
                     temMovimento = 1;
                     x = 8;
                 } else if (matrixCanvas[x][y] == CoresPecas.Vazia){
@@ -460,7 +551,7 @@ function checarPossibilidadeNoroeste(i,j){
                 document.getElementById('circulo['+i+','+j+']').style.backgroundColor = 'none';
                 document.getElementById('circulo['+i+','+j+']').style.border = '1px solid white';
                 document.getElementById('circulo['+i+','+j+']').style.display = 'flex';
-                
+
                 temMovimento = 1;
                 x = -1;
             } else {
@@ -468,7 +559,7 @@ function checarPossibilidadeNoroeste(i,j){
                     document.getElementById('circulo['+i+','+j+']').style.backgroundColor = 'none';
                     document.getElementById('circulo['+i+','+j+']').style.border = '1px solid #8A2BE2';
                     document.getElementById('circulo['+i+','+j+']').style.display = 'flex';
-                    
+
                     temMovimento = 1;
                     x = -1;
                 } else if (matrixCanvas[x][y] == CoresPecas.Vazia){
@@ -476,7 +567,7 @@ function checarPossibilidadeNoroeste(i,j){
                 }
             }
         }
-    }    
+    }
 };
 
 function movimentoValido(i,j){
