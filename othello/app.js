@@ -73,7 +73,7 @@ const canvas = document.getElementById("canvasOthello");
             element.addEventListener('click', function(){
                 movimentoValido(i,j);
                 if(validacaoFinal == 1){
-                    if(jogador == 1 && matrixCanvas[i][j] == CoresPecas.Vazia){
+                    if(jogador == 1){
                         matrixCanvas[i][j] = CoresPecas.Branca;
                         document.getElementById('circulo['+i+','+j+']').style.backgroundColor = 'white';
                         document.getElementById('circulo['+i+','+j+']').style.border = '1px solid white';
@@ -84,7 +84,7 @@ const canvas = document.getElementById("canvasOthello");
                         limparTabuleiro();
                         mostrarMovimentosValidos();
                     }
-                    else if(jogador == 2 && matrixCanvas[i][j] == CoresPecas.Vazia) {
+                    else if(jogador == 2) {
                         matrixCanvas[i][j] = CoresPecas.Preta;
                         document.getElementById('circulo['+i+','+j+']').style.backgroundColor = '#8A2BE2';
                         document.getElementById('circulo['+i+','+j+']').style.border = '1px solid #8A2BE2';
@@ -498,7 +498,7 @@ function checarDirecaoNorte(i,j){
 
     for(x = i-1, y = j; x >= 0; x--){
         if (validacaoInicial == 0){
-            if(x < 0 || matrixCanvas[x][y] == CoresPecas.Vazia){
+            if(x < 0 || matrixCanvas[x][y] == CoresPecas.Vazia || matrixCanvas[i][j] != CoresPecas.Vazia){
                 x = -1;
             } else if (jogador == 1 && (matrixCanvas[x][y] == CoresPecas.Branca) ||
                        jogador == 2 && (matrixCanvas[x][y] == CoresPecas.Preta)){
@@ -543,7 +543,7 @@ function checarDirecaoSul(i,j){
 
     for(x = i+1, y = j; x <= 7; x++){
         if (validacaoInicial == 0){
-            if(x > 7 || matrixCanvas[x][y] == CoresPecas.Vazia){
+            if(x > 7 || matrixCanvas[x][y] == CoresPecas.Vazia || matrixCanvas[i][j] != CoresPecas.Vazia){
                 x = 8;
             } else if (jogador == 1 && (matrixCanvas[x][y] == CoresPecas.Branca) ||
                        jogador == 2 && (matrixCanvas[x][y] == CoresPecas.Preta)){
@@ -588,7 +588,7 @@ function checarDirecaoLeste(i,j){
 
     for(x = i, y = j+1; y <= 7; y++){
         if (validacaoInicial == 0){
-            if(y > 7 || matrixCanvas[x][y] == CoresPecas.Vazia){
+            if(y > 7 || matrixCanvas[x][y] == CoresPecas.Vazia || matrixCanvas[i][j] != CoresPecas.Vazia){
                 y = 8;
             } else if (jogador == 1 && (matrixCanvas[x][y] == CoresPecas.Branca) ||
                        jogador == 2 && (matrixCanvas[x][y] == CoresPecas.Preta)){
@@ -633,7 +633,7 @@ function checarDirecaoOeste(i,j){
 
     for(x = i, y = j-1; y >= 0; y--){
         if (validacaoInicial == 0){
-            if(y < 0 || matrixCanvas[x][y] == CoresPecas.Vazia){
+            if(y < 0 || matrixCanvas[x][y] == CoresPecas.Vazia || matrixCanvas[i][j] != CoresPecas.Vazia){
                 y = -1;
             } else if (jogador == 1 && (matrixCanvas[x][y] == CoresPecas.Branca) ||
                        jogador == 2 && (matrixCanvas[x][y] == CoresPecas.Preta)){
@@ -678,7 +678,7 @@ function checarDirecaoNordeste(i,j){
 
     for(x = i-1, y = j+1; x >= 0 && y <= 7; x--, y++){
         if (validacaoInicial == 0){
-            if(x < 0 || y > 7 || matrixCanvas[x][y] == CoresPecas.Vazia){
+            if(x < 0 || y > 7 || matrixCanvas[x][y] == CoresPecas.Vazia || matrixCanvas[i][j] != CoresPecas.Vazia){
                 x = -1;
             } else if (jogador == 1 && (matrixCanvas[x][y] == CoresPecas.Branca) ||
                        jogador == 2 && (matrixCanvas[x][y] == CoresPecas.Preta)){
@@ -725,7 +725,7 @@ function checarDirecaoSudeste(i,j){
 
     for(x = i+1, y = j+1; x <= 7 && y <= 7; x++, y++){
         if (validacaoInicial == 0){
-            if(x > 7 || y > 7 || matrixCanvas[x][y] == CoresPecas.Vazia){
+            if(x > 7 || y > 7 || matrixCanvas[x][y] == CoresPecas.Vazia || matrixCanvas[i][j] != CoresPecas.Vazia){
                 x = 8;
             } else if (jogador == 1 && (matrixCanvas[x][y] == CoresPecas.Branca) ||
                        jogador == 2 && (matrixCanvas[x][y] == CoresPecas.Preta)){
@@ -772,7 +772,7 @@ function checarDirecaoSudoeste(i,j){
 
     for(x = i+1, y = j-1; x <= 7 && y >= 0; x++, y--){
         if (validacaoInicial == 0){
-            if(x > 7 || y < 0 || matrixCanvas[x][y] == CoresPecas.Vazia){
+            if(x > 7 || y < 0 || matrixCanvas[x][y] == CoresPecas.Vazia || matrixCanvas[i][j] != CoresPecas.Vazia){
                 x = 8;
             } else if (jogador == 1 && (matrixCanvas[x][y] == CoresPecas.Branca) ||
                        jogador == 2 && (matrixCanvas[x][y] == CoresPecas.Preta)){
@@ -819,7 +819,7 @@ function checarDirecaoNoroeste(i,j){
 
     for(x = i-1, y = j-1; x >= 0 && y >= 0; x--, y--){
         if (validacaoInicial == 0){
-            if(x < 0 || y < 0 || matrixCanvas[x][y] == CoresPecas.Vazia){
+            if(x < 0 || y < 0 || matrixCanvas[x][y] == CoresPecas.Vazia || matrixCanvas[i][j] != CoresPecas.Vazia){
                 x = -1;
             } else if (jogador == 1 && (matrixCanvas[x][y] == CoresPecas.Branca) ||
                        jogador == 2 && (matrixCanvas[x][y] == CoresPecas.Preta)){
