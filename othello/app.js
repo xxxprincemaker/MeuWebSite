@@ -44,6 +44,7 @@ const canvas = document.getElementById("canvasOthello");
             botaoCirculo.style.width = '70px';
             botaoCirculo.style.height = '70px';
             botaoCirculo.style.borderRadius = '50%';
+            botaoCirculo.style.transition = 'all 0.5s';
 
 
             if(matrixCanvas[i][j] == CoresPecas.Vazia){
